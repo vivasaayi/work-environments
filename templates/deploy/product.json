@@ -1,0 +1,11 @@
+{
+  "id": "example",
+  "default_branch": "main",
+  "app_service": "app",
+  "app_port": 8080,
+  "staging_port": 18080,
+  "production_port": 18080,
+  "staging_bind": "127.0.0.1",
+  "production_bind": "127.0.0.1",
+  "health_path": "/health"
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "reservations": [
+    {"id": "agbot", "repositories": ["agbot"], "default_branch": "main", "staging_port": 20080, "production_port": 30080, "adoption": "pending", "database": "Geo Hub SQLite; mission planner PostgreSQL"},
+    {"id": "mayyam", "repositories": ["mayyam", "mayyam-e2e"], "default_branch": "main", "staging_port": 20180, "production_port": 30180, "adoption": "pending", "database": "PostgreSQL and additional service dependencies"},
+    {"id": "aruvi-studio", "repositories": ["AruviStudio"], "default_branch": "main", "staging_port": 20280, "production_port": 30280, "adoption": "pending", "database": "inspect product adapter"},
+    {"id": "32-bit-micro-processor", "repositories": ["32-bit-micro-processor"], "default_branch": "main", "staging_port": 20380, "production_port": 30380, "adoption": "pending", "database": "inspect product adapter"}
+  ]
+}

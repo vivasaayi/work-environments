@@ -1,0 +1,37 @@
+# Reference PostgreSQL stack. Adapt the app and dependencies to the product.
+services:
+  app:
+    image: ${APP_IMAGE:?Supply the product image}
+    ports:
+      - "${BIND_ADDRESS}:${PUBLISHED_PORT}:${APP_PORT}"
+    environment:
+      DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/app
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - artifacts:/data
+    networks: [services, database]
+    restart: "unless-stopped"
+  db:
+    image: ${POSTGRES_IMAGE:-postgres:17-alpine}
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generated per environment}
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks: [database]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    restart: "unless-stopped"
+networks:
+  services: {}
+  database:
+    internal: true
+volumes:
+  database: {}
+  artifacts: {}
